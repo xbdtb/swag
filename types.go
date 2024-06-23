@@ -64,21 +64,23 @@ func (t *TypeSpecDef) TypeName() string {
 
 	var names []string
 	if t.NotUnique {
-		pkgPath := strings.Map(func(r rune) rune {
-			if r == '\\' || r == '/' || r == '.' {
-				return '_'
-			}
-			return r
-		}, t.PkgPath)
-		names = append(names, pkgPath)
+		//pkgPath := strings.Map(func(r rune) rune {
+		//	if r == '\\' || r == '/' || r == '.' {
+		//		return '_'
+		//	}
+		//	return r
+		//}, t.PkgPath)
+		//log.Println(pkgPath, names)
+		//names = append(names, pkgPath)
 	} else if t.File != nil {
 		//names = append(names, t.File.Name.Name)
 	}
 	if parentFun, ok := (t.ParentSpec).(*ast.FuncDecl); ok && parentFun != nil {
-		names = append(names, parentFun.Name.Name)
+		//names = append(names, parentFun.Name.Name)
 	}
 	names = append(names, t.TypeSpec.Name.Name)
-	return fullTypeName(names...)
+	fullName := fullTypeName(names...)
+	return fullName
 }
 
 // FullPath return the full path of the typeSpec.
