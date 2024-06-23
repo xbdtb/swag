@@ -72,7 +72,7 @@ func (t *TypeSpecDef) TypeName() string {
 		}, t.PkgPath)
 		names = append(names, pkgPath)
 	} else if t.File != nil {
-		names = append(names, t.File.Name.Name)
+		//names = append(names, t.File.Name.Name)
 	}
 	if parentFun, ok := (t.ParentSpec).(*ast.FuncDecl); ok && parentFun != nil {
 		names = append(names, parentFun.Name.Name)

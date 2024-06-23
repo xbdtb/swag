@@ -303,7 +303,11 @@ func (g *Gen) writeJSONSwagger(config *Config, swagger *spec.Swagger) error {
 		return err
 	}
 
-	err = g.writeFile(b, jsonFileName)
+	content := string(b)
+	content = strings.ReplaceAll(content, "%C2%AB", "«")
+	content = strings.ReplaceAll(content, "%C2%BB", "»")
+
+	err = g.writeFile([]byte(content), jsonFileName)
 	if err != nil {
 		return err
 	}

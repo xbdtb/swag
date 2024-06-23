@@ -154,7 +154,8 @@ func (pkgDefs *PackagesDefinitions) parametrizeGenericType(file *ast.File, origi
 		}
 	}
 
-	name = fmt.Sprintf("%s%s-", string(IgnoreNameOverridePrefix), original.TypeName())
+	//name = fmt.Sprintf("%s%s-", string(IgnoreNameOverridePrefix), original.TypeName())
+	name = fmt.Sprintf("%s«", original.TypeName())
 	var nameParts []string
 	for _, def := range formals {
 		if specDef, ok := genericParamTypeDefs[def.Name]; ok {
@@ -163,6 +164,7 @@ func (pkgDefs *PackagesDefinitions) parametrizeGenericType(file *ast.File, origi
 	}
 
 	name += normalizeGenericTypeName(strings.Join(nameParts, "-"))
+	name += "»"
 
 	if typeSpec, ok := pkgDefs.uniqueDefinitions[name]; ok {
 		return typeSpec
